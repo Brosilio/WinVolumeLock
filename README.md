@@ -2,6 +2,14 @@
 Simple software to limit Windows audio volume or lock it to a set value.
 
 ## [Download Latest Release](https://github.com/Brosilio/WinVolumeLock/releases/latest)
+Requires .NET 4.7.2, but this may be reduced to an earlier version soon.
+
+Supported on:
+- Windows Vista (untested)
+- Windows 7 (untested)
+- Windows 8 (untested)
+- Windows 8.1 (untested)
+- Windows 10 (untested)
 
 ## Usage
 1. Launch the executable.
