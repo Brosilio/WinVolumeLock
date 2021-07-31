@@ -9,7 +9,7 @@ Supported on:
 - Windows 7 (untested)
 - Windows 8 (untested)
 - Windows 8.1 (untested)
-- Windows 10 (untested)
+- Windows 10
 
 ## Usage
 1. Launch the executable.
