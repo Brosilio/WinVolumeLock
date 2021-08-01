@@ -117,8 +117,8 @@ namespace WinVolumeLock
             //
             icon = new NotifyIcon(components)
             {
-                Text = "WinVolumeLock",
-                Icon = Properties.Resources.speaker_unlocked,
+                Text = VolLock ? "WinVolumeLock - Locked" : "WinVolumeLock - Unlocked",
+                Icon = VolLock ? Properties.Resources.speaker_locked : Properties.Resources.speaker_unlocked,
                 Visible = true,
                 ContextMenuStrip = new ContextMenuStrip(components)
             };
@@ -146,7 +146,7 @@ namespace WinVolumeLock
             if (DateTime.Now.Subtract(lastNotifyOfLockTime).TotalMinutes >= 1)
             {
                 lastNotifyOfLockTime = DateTime.Now;
-                icon.ShowBalloonTip(1000, "WinVolLock", "The volume control is locked.", ToolTipIcon.Info);
+                icon.ShowBalloonTip(1000, "WinVolumeLock", "The volume control is locked.", ToolTipIcon.Info);
             }
         }
 
@@ -159,13 +159,13 @@ namespace WinVolumeLock
                 {
                     if (volVal > VolAtLockTime)
                     {
-                        audioController.DefaultPlaybackDevice.SetVolumeAsync(VolAtLockTime).Wait();
+                        audioController.DefaultPlaybackDevice.SetVolumeAsync(VolAtLockTime);
                         MaybeNotify();
                     }
                 }
-                else if (mi_volumeSet.Checked)
+                else if (mi_volumeSet.Checked && volVal != VolAtLockTime)
                 {
-                    audioController.DefaultPlaybackDevice.SetVolumeAsync(VolAtLockTime).Wait();
+                    audioController.DefaultPlaybackDevice.SetVolumeAsync(VolAtLockTime);
                     MaybeNotify();
                 }
             }
@@ -227,6 +227,8 @@ namespace WinVolumeLock
                 {
                     VolLock = false;
                     icon.ContextMenuStrip.Show(p);
+                    icon.Text = "WinVolumeLock - Unlocked";
+                    icon.Icon = Properties.Resources.speaker_unlocked;
                 }
             }
             else
@@ -237,6 +239,9 @@ namespace WinVolumeLock
                 Properties.Settings.Default.VolMax = mi_volumeMax.Checked;
                 Properties.Settings.Default.IsLocked = true;
                 Properties.Settings.Default.Save();
+
+                icon.Text = "WinVolumeLock - Locked";
+                icon.Icon = Properties.Resources.speaker_locked;
             }
         }
     }
