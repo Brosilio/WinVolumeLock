@@ -28,3 +28,8 @@ Supported on:
     ![Screenshot showing the Unlock Volume option](https://i.imgur.com/4bXqpAu.png)
 
 To unlock the volume, an administrator account must be used in the User Account Control window.
+
+## License
+MIT License.
+
+Uses icons from the Fugue icon pack by https://p.yusukekamiyamane.com.
